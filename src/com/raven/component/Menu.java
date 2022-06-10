@@ -1,5 +1,6 @@
 package com.raven.component;
 
+import com.raven.evento.EventoSelecinarMenu;
 import com.raven.model.Model_Menu;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -10,9 +11,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
+import login.Login1;
 
 public class Menu extends javax.swing.JPanel {
-
+    
+    private EventoSelecinarMenu evento;
+    
+    public void añadirEventoMenu(EventoSelecinarMenu evento){
+        this.evento = evento;
+        listMenu1.añadirEventoMenu(evento);
+    }
+    
     public Menu() {
         initComponents();
         setOpaque(false);
@@ -21,24 +30,35 @@ public class Menu extends javax.swing.JPanel {
     }
 
     private void init() {
-        listMenu1.addItem(new Model_Menu("1", "Paguina Principal", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("1", "Pagina Principal", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("2", "Productos Disponibles", Model_Menu.MenuType.MENU));
+        //listMenu1.addItem(new Model_Menu("2", "Granolas", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("2", "Productos", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("3", "Clientes", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("4", " Provedores", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("5", "Vendedores", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("8", " Clientes", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("8", "Vendedores", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("8", "Proveedores", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("2", "Tienda", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
         
         
+        
         listMenu1.addItem(new Model_Menu("","",Model_Menu.MenuType.EMPTY));
         listMenu1.addItem(new Model_Menu("","",Model_Menu.MenuType.EMPTY));
-        listMenu1.addItem(new Model_Menu("","",Model_Menu.MenuType.EMPTY));
-        listMenu1.addItem(new Model_Menu("","Mis Datos",Model_Menu.MenuType.TITLE));
         listMenu1.addItem(new Model_Menu("","",Model_Menu.MenuType.EMPTY));
         
-        listMenu1.addItem(new Model_Menu("8", "Extra", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("9", "More", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("10", "Logout", Model_Menu.MenuType.MENU));
+        
         listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
+        
+        listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
+        
+        
+        
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -46,15 +66,15 @@ public class Menu extends javax.swing.JPanel {
     private void initComponents() {
 
         panelMoving = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelTitle = new javax.swing.JLabel();
         listMenu1 = new com.raven.swing.ListMenu<>();
 
         panelMoving.setOpaque(false);
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/logo.png"))); // NOI18N
-        jLabel1.setText("Application");
+        labelTitle.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(255, 255, 255));
+        labelTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/logo.png"))); // NOI18N
+        labelTitle.setText("Vitarrico");
 
         javax.swing.GroupLayout panelMovingLayout = new javax.swing.GroupLayout(panelMoving);
         panelMoving.setLayout(panelMovingLayout);
@@ -62,14 +82,14 @@ public class Menu extends javax.swing.JPanel {
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMovingLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelMovingLayout.setVerticalGroup(
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMovingLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1)
+                .addComponent(labelTitle)
                 .addContainerGap())
         );
 
@@ -93,7 +113,7 @@ public class Menu extends javax.swing.JPanel {
     protected void paintChildren(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        GradientPaint g = new GradientPaint(0, 0, Color.decode("#52c234"), 0, getHeight(), Color.decode("#061700"));
+        GradientPaint g = new GradientPaint(0, 0, Color.decode("#2193b0"), 0, getHeight(), Color.decode("#6dd5ed"));
         g2.setPaint(g);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
         g2.fillRect(getWidth() - 20, 0, getWidth(), getHeight());
@@ -121,7 +141,7 @@ public class Menu extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelTitle;
     private com.raven.swing.ListMenu<String> listMenu1;
     private javax.swing.JPanel panelMoving;
     // End of variables declaration//GEN-END:variables
